@@ -230,3 +230,23 @@ function trustnews_notice_ignore() {
     add_user_meta( $user_id, sanitize_key( $theme_data->get( 'TextDomain' ) ) . '_notice_ignore', 'true', true );
   }
 }
+
+// function to add image thumbnail on rss feed
+function add_rss_image() {
+    global $post;
+    $output = '';
+    // check if post has thumbnail image
+    if ( has_post_thumbnail( $post->ID ) ) {
+       $thumbnail_ID = get_post_thumbnail_id( $post->ID );
+        $thumbnail = wp_get_attachment_image_src( $thumbnail_ID, 'full' );
+		// add tag media on XML with infos: URL, width and height of image
+        $output .= '<media:content xmlns:media="http://search.yahoo.com/mrss/" medium="image" type="image/jpeg"';
+        $output .= ' url="'. $thumbnail[0] .'"';
+        $output .= ' width="'. $thumbnail[1] .'"';
+        $output .= ' height="'. $thumbnail[2] .'"';
+        $output .= ' />';
+    }
+    echo $output;
+    }
+// call add_rss_image function
+add_action( 'rss2_item', 'add_rss_image' );
