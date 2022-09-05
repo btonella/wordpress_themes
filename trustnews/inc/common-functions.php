@@ -33,19 +33,3 @@ function trustnews_excerpt_length($length) {
     return absint($length);
 }
 add_filter('excerpt_length', 'trustnews_excerpt_length');
-
-// Site Info
-function trustnews_site_info(){ ?>
-    <a href="<?php echo esc_url( __( 'https://wordpress.org/', 'trustnews' ) ); ?>">
-<?php
-/* translators: %s: CMS name, i.e. WordPress. */
-printf( esc_html__( 'Proudly powered by %s', 'trustnews' ), 'WordPress' );
-?>
-</a>
-<span class="sep"> | </span>
-<?php
-/* translators: 1: Theme name, 2: Theme author. */
-printf( esc_html__( 'Theme: %1$s By %2$s.', 'trustnews' ), __('TrustNews <span class="sep"> | </span> ','trustnews'),'<a href="'.esc_url('https://themespiral.com/') .'">' . esc_html__('ThemeSpiral.com','trustnews').'</a>' );
-}
-
-add_action ('trustnews_footer_copyright_frontend','trustnews_site_info');
