@@ -39,7 +39,7 @@
 	}
 
 		$disable_search_form = get_theme_mod('disable_search_form',0);
-		$disable_breaking_news = get_theme_mod('disable_breaking_news',0);
+		$disable_breaking_news = true; //get_theme_mod('disable_breaking_news',0);
 		$upload_header_brand = get_theme_mod ('upload_header_brand','');
 		$enable_advertise_area = get_theme_mod ('enable_advertise_area',0);
 
